@@ -2,7 +2,7 @@ import bcrypt from 'bcryptjs'
 import User from '../../models/user.model.js'
 import { generateTokenAndSetCookie } from '../../lib/utils/generateToken.js'
 
-export const login = async (req, res) => {
+const login = async (req, res) => {
   try {
     // 1- Extract username and password from request body
     const { username, password } = req.body
@@ -32,3 +32,5 @@ export const login = async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error!' })
   }
 }
+
+export default login

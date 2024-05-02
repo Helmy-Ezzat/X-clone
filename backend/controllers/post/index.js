@@ -1,0 +1,8 @@
+export { default as createPost } from './createPost.controller.js'
+export { default as deletePost } from './deletePost.controller.js'
+export { default as commentOnPost } from './commentOnPost.controller.js'
+export { default as getUserPosts } from './getUserPosts.controller.js'
+export { default as getAllPosts } from './getAllPosts.controller.js'
+export { default as likeUnlikePost } from './likeUnlikePost.controller.js'
+export { default as getLikedPosts } from './getLikedPosts.controller.js'
+export { default as getFollowingPosts } from './getFollowingPosts.controller.js'

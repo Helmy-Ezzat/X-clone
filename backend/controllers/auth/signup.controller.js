@@ -2,7 +2,7 @@ import bcrypt from 'bcryptjs'
 import User from '../../models/user.model.js'
 import { generateTokenAndSetCookie } from '../../lib/utils/generateToken.js'
 
-export const signup = async (req, res) => {
+const signup = async (req, res) => {
   try {
     // Destructure user data from request body
     const { fullName, username, email, password } = req.body
@@ -73,3 +73,5 @@ export const signup = async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error!' })
   }
 }
+
+export default signup

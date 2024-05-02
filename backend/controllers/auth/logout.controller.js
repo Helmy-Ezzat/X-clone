@@ -1,4 +1,4 @@
-export const logout = async (req, res) => {
+const logout = async (req, res) => {
   try {
     // Clear the JWT cookie by setting its value to an empty string and maxAge to 0
     res.cookie('jwt', '', { maxAge: 0 })
@@ -8,3 +8,5 @@ export const logout = async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' })
   }
 }
+
+export default logout
