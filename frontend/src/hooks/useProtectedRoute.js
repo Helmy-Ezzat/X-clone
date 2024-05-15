@@ -9,7 +9,6 @@ export const useProtectedRoute = () => {
         const data = await res.json()
         if (data.error) return null
         if (!res.ok) throw new Error(data.error || 'Something went wrong')
-        console.log('user is here ', data)
         return data
       } catch (error) {
         throw new Error(error)

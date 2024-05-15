@@ -1,10 +1,10 @@
-import XSvg from '../../../components/svgs/X'
 import { MdOutlineMail } from 'react-icons/md'
 import { FaUser } from 'react-icons/fa'
 import { MdPassword } from 'react-icons/md'
 import { MdDriveFileRenameOutline } from 'react-icons/md'
 import { Link } from 'react-router-dom'
-import { useSignUp } from '../../../hooks/authHooks/useSignUp'
+import XSvg from '../components/svgs/X'
+import { useSignUp } from '../hooks/useSignUp'
 
 const SignUpPage = () => {
   const { formik, error, isError, isPending } = useSignUp()

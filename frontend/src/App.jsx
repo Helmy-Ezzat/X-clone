@@ -1,17 +1,17 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
-import SignUpPage from './pages/auth/signup/SignUpPage'
-import LoginPage from './pages/auth/login/LoginPage'
-import HomePage from './pages/home/HomePage'
-import Sidebar from './components/common/Sidebar'
-import RightPanel from './components/common/RightPanel'
-import NotificationPage from './pages/notification/NotificationPage'
-import ProfilePage from './pages/profile/ProfilePage'
+import Sidebar from './components/home/Sidebar'
+import LoginPage from './pages/LoginPage'
+import SignUpPage from './pages/SignUpPage'
+import HomePage from './pages/HomePage'
+import NotificationPage from './pages/NotificationPage'
+import ProfilePage from './pages/ProfilePage'
+import RightPanel from './components/home/RightPanel'
 import { Toaster } from 'react-hot-toast'
-import { useProtectedRoute } from './hooks/authHooks/useProtectedRoute'
 import LoadingSpinner from './components/common/LoadingSpinner'
+import { useProtectedRoute } from './hooks/useProtectedRoute'
 
 function App() {
-  const { data: authUser, error, isError, isLoading } = useProtectedRoute()
+  const { data: authUser, isLoading } = useProtectedRoute()
   if (isLoading) {
     return (
       <div className="h-screen flex justify-center items-center">

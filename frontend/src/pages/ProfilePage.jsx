@@ -1,12 +1,12 @@
-import ProfileHeaderSkeleton from '../../components/skeletons/ProfileHeaderSkeleton'
-import CoverImageAndProfileAvatar from './CoverImageAndProfileAvatar'
-import UserProfileHeader from './UserProfileHeader'
-import UserNotFoundError from './UserNotFoundError'
 import { useFormik } from 'formik'
-import ProfileActions from './ProfileActions'
-import UserProfileDetails from './UserProfileDetails'
+import Posts from '../components/common/posts/Posts'
+import CoverImageAndProfileAvatar from '../components/profile/CoverImageAndProfileAvatar'
+import ProfileActions from '../components/profile/ProfileActions'
+import UserNotFoundError from '../components/profile/UserNotFoundError'
+import UserProfileDetails from '../components/profile/UserProfileDetails'
+import UserProfileHeader from '../components/profile/UserProfileHeader'
 import { useState } from 'react'
-import Posts from '../../components/common/posts/Posts'
+
 function ProfilePage() {
   const [feedType, setFeedType] = useState('posts')
   const isMyProfile = true

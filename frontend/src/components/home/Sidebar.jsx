@@ -1,12 +1,11 @@
 import XSvg from '../svgs/X'
-
 import { MdHomeFilled } from 'react-icons/md'
 import { IoNotifications } from 'react-icons/io5'
 import { FaUser } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 import { BiLogOut } from 'react-icons/bi'
-import { useLogout } from '../../hooks/authHooks/useLogout'
 import { useQuery } from '@tanstack/react-query'
+import { useLogout } from '../../hooks/useLogout'
 
 function Sidebar() {
   const { error, isError, isPending, logoutMutation } = useLogout()
