@@ -3,7 +3,6 @@ import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { toast } from 'react-hot-toast'
 
 export const useLogin = () => {
-  // Use useMutation hook to define data mutation call
   const queryClient = useQueryClient()
   const { isPending, isError, error, mutate:loginMutation } = useMutation({
     // Define the main function for the request (mutationFn)
@@ -26,7 +25,6 @@ export const useLogin = () => {
       }
     },
     onSuccess: () => {
-      toast.success('Login successfully')
       queryClient.invalidateQueries({ queryKey: ['authUser'] })
     },
   })

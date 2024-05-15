@@ -6,14 +6,11 @@ import { FaUser } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 import { BiLogOut } from 'react-icons/bi'
 import { useLogout } from '../../hooks/authHooks/useLogout'
+import { useQuery } from '@tanstack/react-query'
 
 function Sidebar() {
   const { error, isError, isPending, logoutMutation } = useLogout()
-  const data = {
-    fullName: 'Helmy Ezzat',
-    username: 'helmy_ezzat',
-    profileImg: '/avatars/boy1.png',
-  }
+  const { data: authUser } = useQuery({ queryKey: ['authUser'] })
   return (
     <div className="w-18 max-w-52 md:flex-[2_2_0]">
       <div className="sticky top-0 left-0 h-screen flex flex-col border-r border-gray-700 w-20 md:w-full">
@@ -47,7 +44,7 @@ function Sidebar() {
           </li>
           <li className="flex justify-center md:justify-normal">
             <Link
-              to={`/profile/${data?.username}`}
+              to={`/profile/${authUser?.username}`}
               className="
             flex items-center gap-3
              hover:bg-stone-900 rounded-full py-2 pl-2 pr-4
@@ -58,15 +55,15 @@ function Sidebar() {
             </Link>
           </li>
         </ul>
-        {data && (
+        {authUser && (
           <Link
-            to={`/profile/${data.username}`}
+            to={`/profile/${authUser.username}`}
             className="mt-auto mb-10 flex gap-2 items-center hover:bg-[#181818] rounded-full px-4 py-2 max-w-fit cursor-pointer transition-all duration-300"
           >
             <div className="avatar hidden md:inline-flex">
               <div className="w-8 rounded-lg">
                 <img
-                  src={data?.profileImg || 'avatar-placeholder.png'}
+                  src={authUser?.profileImg || 'avatar-placeholder.png'}
                   alt=""
                 />
               </div>
@@ -74,9 +71,9 @@ function Sidebar() {
             <div className="flex justify-center flex-1">
               <div className="hidden md:block">
                 <p className="text-white font-bold text-sm w-20 truncate">
-                  {data?.fullName}
+                  {authUser?.fullName}
                 </p>
-                <p className="text-slate-500 text-sm">{data?.username}</p>
+                <p className="text-slate-500 text-sm">{authUser?.username}</p>
               </div>
               <BiLogOut
                 className="w-5 h-5 cursor-pointer"

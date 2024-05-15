@@ -22,7 +22,7 @@ export const useLogout = () => {
       }
     },
     onSuccess: () => {
-      toast.success('Logout successfully')
+      queryClient.invalidateQueries({ queryKey: ['authUser'] })
     },
   })
 
