@@ -5,7 +5,7 @@ import { toast } from 'react-hot-toast'
 export const useLogin = () => {
   // Use useMutation hook to define data mutation call
   const queryClient = useQueryClient()
-  const { isPending, isError, error, mutate } = useMutation({
+  const { isPending, isError, error, mutate:loginMutation } = useMutation({
     // Define the main function for the request (mutationFn)
     mutationFn: async (values) => {
       try {
@@ -21,23 +21,23 @@ export const useLogin = () => {
         console.log(data)
         return data
       } catch (error) {
-        console.error(error)
+        console.log(error)
         throw error
       }
     },
     onSuccess: () => {
-      toast.success('Account created successfully')
+      toast.success('Login successfully')
       queryClient.invalidateQueries({ queryKey: ['authUser'] })
     },
   })
-  // Use useFormik hook to manage form state and handle form submission
+
   const formik = useFormik({
     initialValues: { username: '', password: '' },
     onSubmit: async (values) => {
-      await mutate(values) // Execute the mutation upon form submission
+      await loginMutation(values) 
     },
   })
-  console.log(error)
+
 
   return { formik, isError, error, isPending }
 }

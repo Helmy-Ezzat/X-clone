@@ -5,7 +5,12 @@ import { toast } from 'react-hot-toast'
 export const useSignUp = () => {
   // Use useMutation hook to define data mutation call
   const queryClient = useQueryClient()
-  const { isPending, isError, error, mutate } = useMutation({
+  const {
+    isPending,
+    isError,
+    error,
+    mutate: signUpMutation,
+  } = useMutation({
     // Define the main function for the request (mutationFn)
     mutationFn: async (values) => {
       try {
@@ -34,7 +39,7 @@ export const useSignUp = () => {
   const formik = useFormik({
     initialValues: { email: '', username: '', fullName: '', password: '' },
     onSubmit: async (values) => {
-      await mutate(values) // Execute the mutation upon form submission
+      await signUpMutation(values) // Execute the mutation upon form submission
     },
   })
   console.log(error)

@@ -18,7 +18,7 @@ const SignUpPage = () => {
           onSubmit={formik.handleSubmit}
           className="lg:w-2/3 mx-auto md:mx-20 flex flex-col gap-4"
         >
-          <div className="flex flex-col gap-2 w-full items-center">
+          <div className="flex flex-col gap-2 w-full">
             <XSvg className="w-24 lg:hidden fill-white" />
             <h1 className="text-4xl font-semibold text-white">Join today</h1>
           </div>
@@ -94,14 +94,14 @@ const SignUpPage = () => {
           </div>
           <button
             type="submit"
-            className="btn btn-primary rounded-full text-white"
+            className="btn btn-primary rounded-full text-white w-fit"
           >
             {isPending ? <span className="loading" /> : 'Sign up'}
           </button>
           {isError && <p className="text-red-500">{error.message}</p>}
         </form>
         <div className="flex items-center gap-2 mt-4">
-          <p className="text-white text-lg">Already have an account?</p>
+          <p className="text-white md:text-lg">Already have an account?</p>
           <Link to={'/login'} className="text-blue-500 text-md">
             Login
           </Link>
