@@ -65,7 +65,7 @@ function ProfilePage() {
                 )}
               </div>
             </div>
-            <Posts />
+            <Posts feedType={feedType} />
           </>
         )}
       </div>

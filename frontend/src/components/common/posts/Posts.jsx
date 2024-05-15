@@ -1,25 +1,26 @@
-import Post from "./Post"
+import Post from './Post'
 import PostSkeleton from '../../skeletons/PostSkeleton'
-import { POSTS } from "../../../utils/db/dummy"
+import { POSTS } from '../../../utils/db/dummy'
+import { useGetPosts } from '../../../hooks/useGetPosts'
 
+function Posts({ feedType }) {
+  const { posts, isLoading, isRefetching } = useGetPosts(feedType)
 
-function Posts() {
-  const isLoading = false
   return (
     <>
-      {isLoading && (
+      {isLoading  && (
         <>
           <PostSkeleton />
           <PostSkeleton />
           <PostSkeleton />
         </>
       )}
-      {!isLoading && POSTS?.length === 0 && (
+      {!isLoading  && posts?.length === 0 && (
         <p className="text-center my-4">No posts in this tab. switch😓</p>
       )}
-      {!isLoading && POSTS && (
+      {!isLoading && posts && (
         <>
-          {POSTS.map((post) => (
+          {posts.map((post) => (
             <Post key={post._id} post={post} />
           ))}
         </>

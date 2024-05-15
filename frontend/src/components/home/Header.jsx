@@ -1,8 +1,6 @@
 import React, { useState } from 'react'
 
-function Header() {
-  const [feedType, setFeedType] = useState('forYou')
-
+function Header({ feedType, setFeedType }) {
   return (
     <div className="flex w-full border-b border-gray-700">
       <div
