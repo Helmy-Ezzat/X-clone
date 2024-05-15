@@ -17,11 +17,11 @@ function CoverImageAndProfileAvatar({ user, isMyProfile, formik }) {
       {isMyProfile && (
         <div
           className="
-          absolute top-2 right-2 bg-gray-800 p-2 rounded-full bg-opacity-75
+          absolute top-2 right-4 bg-gray-800 p-2 rounded-full bg-opacity-75
           cursor-pointer opacity-0 group-hover/cover:opacity-100 transition duration-200"
         >
           <MdEdit
-            className="w-5 h-5 text-white"
+            className="w-5 h-5  text-white"
             onClick={() => coverImgRef.current.click()}
           />
           <input

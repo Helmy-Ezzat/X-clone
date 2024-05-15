@@ -20,14 +20,7 @@ function EditProfileModal() {
 
   return (
     <>
-      <button
-        className="btn btn-outline btn-sm rounded-full"
-        onClick={() =>
-          document.getElementById('edit_profile_modal').showModal()
-        }
-      >
-        Edit Profile
-      </button>
+      
       <dialog className="modal" id="edit_profile_modal">
         <div className="modal-box border border-gray-700 rounded-md shadow-md">
           <h3 className="font-bold text-lg my-3">Update Profile</h3>
