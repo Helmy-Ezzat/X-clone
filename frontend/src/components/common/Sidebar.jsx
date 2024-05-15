@@ -5,8 +5,10 @@ import { IoNotifications } from 'react-icons/io5'
 import { FaUser } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 import { BiLogOut } from 'react-icons/bi'
+import { useLogout } from '../../hooks/authHooks/useLogout'
 
 function Sidebar() {
+  const { error, isError, isPending, logoutMutation } = useLogout()
   const data = {
     fullName: 'Helmy Ezzat',
     username: 'helmy_ezzat',
@@ -76,7 +78,13 @@ function Sidebar() {
                 </p>
                 <p className="text-slate-500 text-sm">{data?.username}</p>
               </div>
-              <BiLogOut className="w-5 h-5 cursor-pointer" />
+              <BiLogOut
+                className="w-5 h-5 cursor-pointer"
+                onClick={(e) => {
+                  e.preventDefault()
+                  logoutMutation()
+                }}
+              />
             </div>
           </Link>
         )}
