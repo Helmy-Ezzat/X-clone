@@ -5,7 +5,7 @@ import { FaUser } from 'react-icons/fa'
 import { Link, useLocation } from 'react-router-dom'
 import { BiLogOut } from 'react-icons/bi'
 import { useQuery } from '@tanstack/react-query'
-import { useLogout } from '../../hooks/useLogout'
+import { useLogout } from '../../hooks/auth/useLogout'
 
 function Sidebar() {
   const { error, isError, isPending, logoutMutation } = useLogout()

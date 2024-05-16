@@ -8,7 +8,7 @@ import ProfilePage from './pages/ProfilePage'
 import RightPanel from './components/home/RightPanel'
 import { Toaster } from 'react-hot-toast'
 import LoadingSpinner from './components/common/LoadingSpinner'
-import { useProtectedRoute } from './hooks/useProtectedRoute'
+import { useProtectedRoute } from './hooks/auth/useProtectedRoute'
 
 function App() {
   const { data: authUser, isLoading } = useProtectedRoute()

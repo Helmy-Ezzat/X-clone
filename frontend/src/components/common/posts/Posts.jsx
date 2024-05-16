@@ -1,7 +1,7 @@
 import Post from './Post'
 import PostSkeleton from '../../skeletons/PostSkeleton'
 import { POSTS } from '../../../utils/db/dummy'
-import { useGetPosts } from '../../../hooks/useGetPosts'
+import { useGetPosts } from '../../../hooks/post/useGetPosts'
 
 function Posts({ feedType }) {
   const { posts, isLoading, isRefetching } = useGetPosts(feedType)

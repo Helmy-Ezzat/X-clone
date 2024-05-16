@@ -2,7 +2,7 @@ import React from 'react'
 import { IoSettingsOutline } from 'react-icons/io5'
 import { Link } from 'react-router-dom'
 import { FaHeart, FaUser } from 'react-icons/fa'
-import {} from '../components/common/LoadingSpinner'
+import LoadingSpinner from '../components/common/LoadingSpinner'
 
 function NotificationPage() {
   const notifications = [

@@ -14,7 +14,7 @@ export const useProtectedRoute = () => {
         throw new Error(error)
       }
     },
-    retry: false,
+    retry: 3, // Number of retry attempts upon request failure.
   })
 
   return { data, error, isError, isLoading }

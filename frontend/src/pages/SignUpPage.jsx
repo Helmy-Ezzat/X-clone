@@ -4,7 +4,7 @@ import { MdPassword } from 'react-icons/md'
 import { MdDriveFileRenameOutline } from 'react-icons/md'
 import { Link } from 'react-router-dom'
 import XSvg from '../components/svgs/X'
-import { useSignUp } from '../hooks/useSignUp'
+import { useSignUp } from '../hooks/auth/useSignUp'
 
 const SignUpPage = () => {
   const { formik, error, isError, isPending } = useSignUp()

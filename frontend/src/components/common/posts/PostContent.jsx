@@ -1,5 +1,5 @@
 import React from 'react'
-import { useCreatePost } from '../../../hooks/useCreatePost'
+import { useCreatePost } from '../../../hooks/post/useCreatePost'
 
 function PostContent({post}) {
     const {isArabic} = useCreatePost()
