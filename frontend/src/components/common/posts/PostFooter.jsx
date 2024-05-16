@@ -5,7 +5,7 @@ import PostCommentModal from './PostCommentModal'
 
 function PostFooter({post}) {
   return (
-    <div className="flex justify-between items-center mt-3 px-4">
+    <div className="flex justify-between items-center mt-3 px-4 border-t border-gray-700">
       {/* Like */}
       <div className="group flex gap-1 items-center cursor-pointer">
         <FaRegHeart className="w-4 h-4 cursor-pointer text-slate-500 group-hover:text-pink-500" />

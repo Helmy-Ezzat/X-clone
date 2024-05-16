@@ -1,8 +1,8 @@
-import Post from "../../models/post.model.js"
-import User from "../../models/user.model.js"
+import Post from '../../models/post.model.js'
+import User from '../../models/user.model.js'
 import { v2 as cloudinary } from 'cloudinary'
 
- const createPost = async (req, res) => {
+const createPost = async (req, res) => {
   try {
     const { text } = req.body // Extract text from request body
     let { img } = req.body // Extract img from request body
@@ -18,7 +18,14 @@ import { v2 as cloudinary } from 'cloudinary'
     }
     // Upload image to cloudinary if provided
     if (img) {
-      const uploadedResponse = await cloudinary.uploader.upload(img)
+      const uploadedResponse = await cloudinary.uploader.upload(
+        img,
+        { public_id: 'helmy' },
+        (error, result) => {
+          console.log(result)
+          console.log(error)
+        }
+      )
       img = uploadedResponse.secure_url
     }
     // Create a new post instance
