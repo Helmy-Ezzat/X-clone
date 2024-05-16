@@ -4,6 +4,7 @@ import { IoCloseSharp } from 'react-icons/io5'
 import { useCreatePost } from '../../hooks/post/useCreatePost'
 
 
+
 function CreatePost() {
   const {
     authUser,
