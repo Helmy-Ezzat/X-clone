@@ -15,10 +15,14 @@ function Post({ post }) {
   const isMyPost = authUser._id === post.user._id
   return (
     <div className="flex gap-2 p-4">
+<<<<<<< HEAD
       <Link
         to={`/profile/${post.username}`}
         className="w-8 h-8 rounded-full overflow-hidden"
       >
+=======
+      <Link to={`/profile/${post.username}`} className="w-8 h-8 rounded-full overflow-hidden">
+>>>>>>> 428979f0cd4cea420ff8e9704f86ab0425585a20
         <img src={post.user.profileImg || '/avatar-placeholder.png'} alt="" />
       </Link>
       <div className="flex flex-col flex-1">
