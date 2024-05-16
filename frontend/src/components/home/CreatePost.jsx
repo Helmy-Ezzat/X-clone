@@ -1,11 +1,9 @@
 import { CiImageOn } from 'react-icons/ci'
 import { BsEmojiSmileFill } from 'react-icons/bs'
 import { IoCloseSharp } from 'react-icons/io5'
-<<<<<<< HEAD
 import { useCreatePost } from '../../hooks/post/useCreatePost'
-=======
-import { useCreatePost } from '../../hooks/useCreatePost'
->>>>>>> 428979f0cd4cea420ff8e9704f86ab0425585a20
+
+
 function CreatePost() {
   const {
     authUser,
