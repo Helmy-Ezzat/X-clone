@@ -8,20 +8,25 @@ function Posts({ feedType }) {
 
   return (
     <>
-      {isLoading  && (
+      {isLoading && (
         <>
           <PostSkeleton />
           <PostSkeleton />
           <PostSkeleton />
         </>
       )}
-      {!isLoading  && posts?.length === 0 && (
+      {!isLoading && posts?.length === 0 && (
         <p className="text-center my-4">No posts in this tab. switch😓</p>
       )}
       {!isLoading && posts && (
         <>
           {posts.map((post) => (
-            <Post key={post._id} post={post} />
+            <div
+              key={post._id}
+              className="m-3 rounded-md overflow-hidden bg-gray-900 shadow-xl"
+            >
+              <Post post={post} />
+            </div>
           ))}
         </>
       )}
