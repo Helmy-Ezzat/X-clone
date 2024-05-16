@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { useFormattedDate } from '../../../hooks/useFormattedDate'
 
-function PostHeader({ post }) {
+function UserDetails({ post }) {
   const { formattedDate } = useFormattedDate()
   const formattedDateResult = formattedDate(new Date(post.createdAt))
   return (
@@ -19,4 +19,4 @@ function PostHeader({ post }) {
   )
 }
 
-export default PostHeader
+export default UserDetails

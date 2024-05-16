@@ -1,11 +1,14 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import toast from 'react-hot-toast'
-export const useDeletePost = (postId) => {
+export const useDeletePost = (post) => {
   const queryClient = useQueryClient()
+  const { data: authUser } = useQuery({ queryKey: ['authUser'] })
+  const isMyPost = authUser._id === post.user._id
+
   const { mutate: deletePost, isPending: isDeleting } = useMutation({
     mutationFn: async () => {
       try {
-        const res = await fetch(`/api/posts/${postId}`, {
+        const res = await fetch(`/api/posts/${post._id}`, {
           method: 'DELETE',
         })
         const data = res.json()
@@ -21,5 +24,5 @@ export const useDeletePost = (postId) => {
     },
   })
 
-  return { deletePost, isDeleting }
+  return { deletePost, isDeleting, isMyPost }
 }
