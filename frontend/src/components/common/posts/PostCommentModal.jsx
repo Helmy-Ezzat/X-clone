@@ -1,14 +1,9 @@
 import React from 'react'
 import PostContent from './PostContent'
-import { useFormik } from 'formik'
+import { useCommentPost } from '../../../hooks/post/useCommentPost'
 
 function PostCommentModal({ post }) {
-  const formik = useFormik({
-    initialValues: { comment: '' },
-    onSubmit: (values) => {
-      console.log(values)
-    },
-  })
+  const { formik } = useCommentPost(post)
   return (
     <dialog className="modal" id={`comments_modal${post._id}`}>
       <div className="modal-box rounded border border-gray-600">
