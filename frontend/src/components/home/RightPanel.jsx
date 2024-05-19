@@ -1,9 +1,10 @@
 import { Link } from 'react-router-dom'
-import { USERS_FOR_RIGHT_PANEL } from '../../utils/db/dummy.js'
 import RightPanelSkeleton from '../skeletons/RightPanelSkeleton.jsx'
+import { useSuggestedUsers } from '../../hooks/user/useSuggestedUsers.js'
 
 function RightPanel() {
-  const isLoading = false
+  const { suggestedUsers, isLoading } = useSuggestedUsers()
+  if (suggestedUsers?.length === 0) return <div className="md:w-64 w-0" />
   return (
     <div className="hidden lg:block my-4 mx-2">
       <div className="bg-[#16181c] p-4 rounded-md sticky top-2">
@@ -19,15 +20,18 @@ function RightPanel() {
           )}
           {!isLoading && (
             <>
-              {USERS_FOR_RIGHT_PANEL.map((user,idx) => (
+              {suggestedUsers.map((user, idx) => (
                 <Link
-                key={idx}
+                  key={idx}
                   to={`/profile/${user.username}`}
                   className="flex items-center justify-center gap-4"
                 >
                   <div className="flex gap-2 items-center">
-                    <div className="w-8 rounded-full">
-                      <img src={user.profileImg} alt="" />
+                    <div className="w-8 rounded-full overflow-hidden">
+                      <img
+                        src={user.profileImg || '/avatar-placeholder.png'}
+                        alt=""
+                      />
                     </div>
 
                     <div className="flex flex-col">
