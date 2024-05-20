@@ -1,9 +1,12 @@
 import { Link } from 'react-router-dom'
 import RightPanelSkeleton from '../skeletons/RightPanelSkeleton.jsx'
 import { useSuggestedUsers } from '../../hooks/user/useSuggestedUsers.js'
+import { useFollow } from '../../hooks/user/useFollow.js'
+import LoadingSpinner from '../common/LoadingSpinner.jsx'
 
 function RightPanel() {
   const { suggestedUsers, isLoading } = useSuggestedUsers()
+  const { follow, isPending } = useFollow()
   if (suggestedUsers?.length === 0) return <div className="md:w-64 w-0" />
   return (
     <div className="hidden lg:block my-4 mx-2">
@@ -44,8 +47,14 @@ function RightPanel() {
                     </div>
                   </div>
 
-                  <button className="btn btn-sm bg-white text-black hover:bg-white hover:opacity-90 rounded-full">
-                    Follow
+                  <button
+                    onClick={(e) => {
+                      e.preventDefault()
+                      follow(user._id)
+                    }}
+                    className="btn btn-sm bg-white text-black hover:bg-white hover:opacity-90 rounded-full"
+                  >
+                    {isPending ? <LoadingSpinner size="sm" /> : 'Follow'}
                   </button>
                 </Link>
               ))}
