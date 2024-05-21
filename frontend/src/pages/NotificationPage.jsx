@@ -3,31 +3,12 @@ import { IoSettingsOutline } from 'react-icons/io5'
 import { Link } from 'react-router-dom'
 import { FaHeart, FaUser } from 'react-icons/fa'
 import LoadingSpinner from '../components/common/LoadingSpinner'
+import { useGetNotifications } from '../hooks/notifications/useGetNotifications'
+import { useDeleteNotifications } from '../hooks/notifications/useDeleteNotifications'
 
 function NotificationPage() {
-  const notifications = [
-    {
-      _id: '1',
-      from: {
-        _id: '1',
-        username: 'johndoe',
-        profileImg: '/avatars/boy2.png',
-      },
-      type: 'follow',
-    },
-    {
-      _id: '2',
-      from: {
-        _id: '2',
-        username: 'janedoe',
-        profileImg: '/avatars/girl1.png',
-      },
-      type: 'like',
-    },
-  ]
-  const deleteNotifications = () => {
-    alert('All notifications deleted')
-  }
+  const { Notifications, isLoading } = useGetNotifications()
+  const { deleteNotifications } = useDeleteNotifications()
 
   return (
     <div className="min-h-screen border-r border-l border-gray-700 flex-[4_4_0]">
@@ -47,29 +28,34 @@ function NotificationPage() {
           </ul>
         </div>
       </div>
-      {false && (
+      {isLoading && (
         <div className="flex justify-center items-center h-full ">
           <LoadingSpinner size={'lg'} />
         </div>
       )}
-      {notifications?.length === 0 && (
+      {Notifications?.length === 0 && (
         <div className="text-center p-4 font-bold">No notifications 🤔</div>
       )}
-      {notifications.map((notification) => (
+      {Notifications?.map((notification) => (
         <div className="border-b border-gray-700" key={notification._id}>
           <div className="flex gap-2 p-4">
             {notification.type === 'follow' && (
               <FaUser className="w-7 h-7 text-primary" />
             )}
             {notification.type === 'like' && (
-              <FaHeart className="w-7 h-7 text-primary" />
+              <FaHeart className="w-7 h-7 text-red-700" />
             )}
             <Link
               to={`/profile/${notification.from.username}`}
               className="flex gap-1"
             >
-              <div className="w-8 rounded-full">
-                <img src={notification.from.profileImg} alt="" />
+              <div className="w-8 rounded-full overflow-hidden">
+                <img
+                  src={
+                    notification.from.profileImg || '/avatar-placeholder.png'
+                  }
+                  alt=""
+                />
               </div>
               <div className="flex gap-1">
                 <span className="font-bold">@{notification.from.username}</span>
