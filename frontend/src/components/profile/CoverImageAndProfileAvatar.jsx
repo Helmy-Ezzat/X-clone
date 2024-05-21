@@ -2,14 +2,14 @@ import { MdEdit } from 'react-icons/md'
 import { useFormik } from 'formik'
 import { useRef } from 'react'
 
-function CoverImageAndProfileAvatar({ user, isMyProfile, formik }) {
+function CoverImageAndProfileAvatar({ userData, isMyProfile, formik }) {
   const coverImgRef = useRef(null)
   const profileImgRef = useRef(null)
 
   return (
     <div className="relative group/cover">
       <img
-        src={formik.values.coverImg || user.coverImg || '/cover.png'}
+        src={formik.values.coverImg || userData.coverImg || '/cover.png'}
         alt="cover image"
         className="w-full h-52 object-cover"
       />
@@ -60,7 +60,7 @@ function CoverImageAndProfileAvatar({ user, isMyProfile, formik }) {
             className="w-full h-full object-cover" // Ensures the image fits proportionally within the div
             src={
               formik.values.profileImg ||
-              user.profileImg ||
+              userData.profileImg ||
               '/avatar-placeholder.png'
             }
             alt="profile image"

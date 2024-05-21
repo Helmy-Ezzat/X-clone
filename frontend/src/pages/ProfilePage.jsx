@@ -6,10 +6,17 @@ import UserNotFoundError from '../components/profile/UserNotFoundError'
 import UserProfileDetails from '../components/profile/UserProfileDetails'
 import UserProfileHeader from '../components/profile/UserProfileHeader'
 import { useState } from 'react'
+import { useQuery } from '@tanstack/react-query'
+import FeedTabs from '../components/profile/FeedTabs'
+import { useGetUserProfile } from '../hooks/user/useGetUserProfile'
+import { useParams } from 'react-router-dom'
 
 function ProfilePage() {
+  const { username } = useParams()
   const [feedType, setFeedType] = useState('posts')
-  const isMyProfile = true
+  const { data: authUser } = useQuery({ queryKey: ['authUser'] })
+  const { userData, isLoading, refetch, isRefetching } = useGetUserProfile(username)
+  const isMyProfile = authUser?._id === userData?._id
   const user = {
     _id: '1',
     fullName: 'John Doe',
@@ -33,42 +40,21 @@ function ProfilePage() {
   return (
     <div className="flex-[4_4_0] border-r border-gray-700 ">
       {false && <ProfileHeaderSkeleton />}
-      {!false && !user && <UserNotFoundError />}
-      <div className="flex flex-col">
-        {!false && user && (
-          <>
-            <UserProfileHeader user={user} />
-            <CoverImageAndProfileAvatar
-              isMyProfile={isMyProfile}
-              user={user}
-              formik={formik}
-            />
-            <ProfileActions isMyProfile={isMyProfile} formik={formik} />
-            <UserProfileDetails user={user} />
-            <div className="flex w-full border-b border-gray-700 mt-4">
-              <div
-                className="flex justify-center flex-1 p-3 hover:bg-secondary transition duration-300 relative cursor-pointer"
-                onClick={() => setFeedType('posts')}
-              >
-                Posts
-                {feedType === 'posts' && (
-                  <div className="absolute bottom-0 w-10 h-1 rounded-full bg-primary" />
-                )}
-              </div>
-              <div
-                className="flex justify-center flex-1 p-3 text-slate-500 hover:bg-secondary transition duration-300 relative cursor-pointer"
-                onClick={() => setFeedType('likes')}
-              >
-                Likes
-                {feedType === 'likes' && (
-                  <div className="absolute bottom-0 w-10  h-1 rounded-full bg-primary" />
-                )}
-              </div>
-            </div>
-            <Posts feedType={feedType} />
-          </>
-        )}
-      </div>
+      {!false && !userData && <UserNotFoundError />}
+      {!false && userData && (
+        <div className="flex flex-col">
+          <UserProfileHeader userData={userData} />
+          <CoverImageAndProfileAvatar
+            userData={userData}
+            isMyProfile={isMyProfile}
+            formik={formik}
+          />
+          <ProfileActions isMyProfile={isMyProfile} formik={formik} />
+          <UserProfileDetails userData={userData} />
+          <FeedTabs feedType={feedType} setFeedType={setFeedType} />
+          <Posts feedType={feedType} />
+        </div>
+      )}
     </div>
   )
 }
