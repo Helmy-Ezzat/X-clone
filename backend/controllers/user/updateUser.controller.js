@@ -1,5 +1,6 @@
 import bcrypt from 'bcryptjs'
 import User from '../../models/user.model.js'
+import { v2 as cloudinary } from 'cloudinary'
 
 export const updateUser = async (req, res) => {
   // Destructure request body

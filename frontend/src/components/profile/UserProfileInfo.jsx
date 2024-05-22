@@ -3,7 +3,7 @@ import { FaArrowLeft } from 'react-icons/fa6'
 import { Link } from 'react-router-dom'
 import { POSTS } from '../../utils/db/dummy'
 
-function UserProfileHeader({ userData }) {
+function UserProfileInfo({ userData }) {
   return (
     <div className="flex gap-10 px-4 py-2 items-center">
       <Link to="/">
@@ -17,4 +17,4 @@ function UserProfileHeader({ userData }) {
   )
 }
 
-export default UserProfileHeader
+export default UserProfileInfo

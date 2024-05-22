@@ -10,7 +10,7 @@ function Post({ post }) {
   return (
     <div className="flex gap-2 p-4">
       <Link
-        to={`/profile/${post.username}`}
+        to={`/profile/${post.user.username}`}
         className="w-8 h-8 rounded-full overflow-hidden"
       >
         <img src={post.user.profileImg || '/avatar-placeholder.png'} alt="" />

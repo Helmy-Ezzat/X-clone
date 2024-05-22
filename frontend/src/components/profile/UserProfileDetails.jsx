@@ -2,6 +2,7 @@ import React from 'react'
 import { FaLink } from 'react-icons/fa6'
 
 function UserProfileDetails({ userData }) {
+  
   return (
     <div className="mt-14 flex flex-col gap-4 px-4">
       <div className="flex flex-col">

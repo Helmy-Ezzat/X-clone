@@ -6,7 +6,7 @@ import LoadingSpinner from '../common/LoadingSpinner.jsx'
 
 function RightPanel() {
   const { suggestedUsers, isLoading } = useSuggestedUsers()
-  const { follow, isPending } = useFollow()
+  const { follow, isPendingFollow } = useFollow()
   if (suggestedUsers?.length === 0) return <div className="md:w-64 w-0" />
   return (
     <div className="hidden lg:block my-4 mx-2">
@@ -54,7 +54,7 @@ function RightPanel() {
                     }}
                     className="btn btn-sm bg-white text-black hover:bg-white hover:opacity-90 rounded-full"
                   >
-                    {isPending ? <LoadingSpinner size="sm" /> : 'Follow'}
+                    {isPendingFollow ? <LoadingSpinner size="sm" /> : 'Follow'}
                   </button>
                 </Link>
               ))}
