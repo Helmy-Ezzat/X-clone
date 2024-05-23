@@ -8,6 +8,7 @@ import connectMongoDB from './db/connectMongoDB.js'
 import cookieParser from 'cookie-parser'
 import { v2 as cloudinary } from 'cloudinary'
 import path from 'path'
+import job from './cron/cron.js'
 dotenv.config() // Load environment variables from .env file
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -40,4 +41,5 @@ if (process.env.NODE_ENV === 'production') {
 app.listen(PORT, () => {
   console.log(`Hi Helmy 👋 Server is running on port ${PORT}`)
   connectMongoDB()
+  job.start()
 })
