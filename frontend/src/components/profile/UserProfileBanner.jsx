@@ -4,8 +4,9 @@ import { useHandleFileChange } from '../../hooks/useHandleFileChange'
 import { useFollow } from '../../hooks/user/useFollow'
 import { useQuery } from '@tanstack/react-query'
 
-function UserProfileBanner({ userData, isMyProfile }) {
+function UserProfileBanner({ userData }) {
   const { data: authUser } = useQuery({ queryKey: ['authUser'] })
+  const isMyProfile = authUser?._id === userData?._id
 
   const {
     fileInputRef,

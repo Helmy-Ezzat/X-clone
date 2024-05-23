@@ -1,11 +1,14 @@
-import Post from './Post'
 import PostSkeleton from '../../skeletons/PostSkeleton'
-import { POSTS } from '../../../utils/db/dummy'
 import { useGetPosts } from '../../../hooks/post/useGetPosts'
+import Post from '../posts/Post'
+import { useEffect } from 'react'
+function Posts({ feedType, userData }) {
+  const { posts, isLoading, refetch } = useGetPosts(feedType, userData)
 
-function Posts({ feedType }) {
-  const { posts, isLoading, isRefetching } = useGetPosts(feedType)
-
+    useEffect(() => {
+      refetch()
+    }, [feedType, refetch,userData?.username])
+console.log(userData?._id);
   return (
     <>
       {isLoading && (

@@ -12,10 +12,8 @@ import ProfileHeaderSkeleton from '../components/skeletons/ProfileHeaderSkeleton
 function ProfilePage() {
   const { username } = useParams()
   const [feedType, setFeedType] = useState('posts')
-  const { data: authUser } = useQuery({ queryKey: ['authUser'] })
   const { userData, isLoading, refetch, isRefetching } =
     useGetUserProfile(username)
-  const isMyProfile = authUser?._id === userData?._id
   
 
   return (
@@ -27,10 +25,10 @@ function ProfilePage() {
       {!isLoading && userData && (
         <div className="flex flex-col">
           <UserProfileInfo userData={userData} />
-          <UserProfileBanner userData={userData} isMyProfile={isMyProfile}/>
+          <UserProfileBanner userData={userData} />
           <UserProfileDetails userData={userData} />
           <FeedTabs feedType={feedType} setFeedType={setFeedType} />
-          <Posts feedType={feedType} />
+          <Posts feedType={feedType} userData={userData} />
         </div>
       )}
     </div>

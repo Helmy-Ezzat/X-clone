@@ -1,6 +1,7 @@
 import React from 'react'
 
 function FeedTabs({ feedType, setFeedType }) {
+  console.log(feedType);
   return (
     <div className="flex w-full border-b border-gray-700 mt-4">
       <div
