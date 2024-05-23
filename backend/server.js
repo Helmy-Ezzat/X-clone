@@ -7,7 +7,7 @@ import notificationRoutes from './routes/notification.route.js'
 import connectMongoDB from './db/connectMongoDB.js'
 import cookieParser from 'cookie-parser'
 import { v2 as cloudinary } from 'cloudinary'
-
+import path from 'path'
 dotenv.config() // Load environment variables from .env file
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -17,6 +17,7 @@ cloudinary.config({
 
 const app = express()
 const PORT = process.env.PORT || 5000
+const __dirname = path.resolve()
 
 app.use(express.json({ limit: '5mb' })) // Middleware to parse JSON bodies in requests
 // limit shouldn`t be too high to prevent DOS
@@ -27,6 +28,14 @@ app.use('/api/auth', authRoutes)
 app.use('/api/users', userRoutes)
 app.use('/api/posts', postRouter)
 app.use('/api/notifications', notificationRoutes)
+
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '/frontend/dist')))
+
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'frontend', 'dist', 'index.html'))
+  })
+}
 
 app.listen(PORT, () => {
   console.log(`Hi Helmy 👋 Server is running on port ${PORT}`)
