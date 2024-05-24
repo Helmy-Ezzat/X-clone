@@ -1,6 +1,7 @@
 import Post from '../../models/post.model.js'
 import User from '../../models/user.model.js'
 import { v2 as cloudinary } from 'cloudinary'
+import { v4 as uuidv4 } from 'uuid' // لإضافة توليد UUID
 
 const createPost = async (req, res) => {
   try {
@@ -16,24 +17,23 @@ const createPost = async (req, res) => {
     if (!text && !img) {
       return res.status(400).json({ error: 'Post must have text or image' })
     }
-    // Upload image to cloudinary if provided
+
+    // Upload image to Cloudinary if provided
     if (img) {
-      const uploadedResponse = await cloudinary.uploader.upload(
-        img,
-        { public_id: 'helmy' },
-        (error, result) => {
-          console.log(result)
-          console.log(error)
-        }
-      )
+      const uniqueId = uuidv4() // توليد معرف فريد للصورة
+      const uploadedResponse = await cloudinary.uploader.upload(img, {
+        public_id: `helmy_${uniqueId}`, // استخدام معرف فريد للصورة
+      })
       img = uploadedResponse.secure_url
     }
+
     // Create a new post instance
     const newPost = new Post({
       user: userId, // Set user ID for the post
       text, // Set text for the post
       img, // Set image URL for the post
     })
+
     // Save the new post
     await newPost.save()
     res.status(201).json(newPost)
