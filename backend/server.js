@@ -38,8 +38,14 @@ if (process.env.NODE_ENV === 'production') {
   })
 }
 
-app.listen(PORT, () => {
-  console.log(`Hi Helmy 👋 Server is running on port ${PORT}`)
-  connectMongoDB()
-  job.start()
-})
+// Ensure the app is exported for Netlify/Vercel
+export default app;
+
+// Only listen when not in a Serverless environment
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(PORT, () => {
+    console.log(`Hi Helmy 👋 Server is running on port ${PORT}`)
+    connectMongoDB()
+    job.start()
+  })
+}
